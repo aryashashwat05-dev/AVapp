@@ -1,0 +1,41 @@
+headers = []
+redirects = []
+
+[dev]
+framework = "next"
+targetPort = 3000.0
+command = "npm run dev"
+
+[functions]
+
+[functions."*"]
+node_bundler = "esbuild"
+
+[[plugins]]
+origin = "config"
+package = "@netlify/plugin-nextjs"
+
+[plugins.inputs]
+
+[build]
+publish = "C:\\Users\\HP\\CascadeProjects\\windsurf-project\\.next"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "set NODE_ENV=production && npm run build"
+
+[build.environment]
+NODE_VERSION = "20"
+NPM_VERSION = "10.2.4"
+NEXT_TELEMETRY_DISABLED = "1"
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]

@@ -1,0 +1,22 @@
+{
+  "appId": "com.windsurf.app",
+  "appName": "Windsurf App",
+  "webDir": "out",
+  "bundledWebRuntime": false,
+  "server": {
+    "url": "http://YOUR_LOCAL_IP:3000",
+    "cleartext": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000,
+      "launchAutoHide": true,
+      "backgroundColor": "#ffffff",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true
+    }
+  }
+}
