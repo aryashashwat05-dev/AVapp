@@ -8,10 +8,14 @@ import { Loader2 } from 'lucide-react';
 
 const googleProvider = new GoogleAuthProvider();
 
+interface OAuthButtonsProps {
+  onSuccess?: () => void;
+}
+
 /**
  * A component that renders OAuth sign-in buttons.
  */
-export function OAuthButtons() {
+export function OAuthButtons({ onSuccess }: OAuthButtonsProps) {
   const [isLoading, setIsLoading] = useState<string | null>(null);
   const { toast } = useToast();
   const auth = getAuth();
@@ -20,11 +24,14 @@ export function OAuthButtons() {
     setIsLoading(provider.providerId);
     try {
       await signInWithPopup(auth, provider);
-      // The onAuthStateChanged listener in your main provider will handle the redirect.
       toast({
         title: 'Success!',
         description: 'You have successfully signed in.',
       });
+      // Call the onSuccess callback if provided
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (error: any) {
       console.error('OAuth sign-in error:', error);
       toast({

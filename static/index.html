@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Chat</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="login-screen" id="loginScreen">
+            <div class="login-box">
+                <h1>Welcome to Web Chat</h1>
+                <input type="text" id="usernameInput" placeholder="Enter your nickname" autofocus>
+                <button id="joinButton">Join Chat</button>
+            </div>
+        </div>
+        
+        <div class="chat-window" id="chatWindow" style="display: none;">
+            <div class="chat-header">
+                <h2>Web Chat</h2>
+                <div class="online-users">
+                    <span id="onlineCount">0</span> online
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will appear here -->
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator"></div>
+            
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Type a message..." disabled>
+                <button id="sendButton" disabled>Send</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

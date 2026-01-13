@@ -1,7 +1,11 @@
 
 import type {NextConfig} from 'next';
+import withPWA from 'next-pwa';
 
-const nextConfig: NextConfig = {
+const nextConfig: NextConfig = withPWA({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
   /* config options here */
   typescript: {
     ignoreBuildErrors: true,
@@ -53,10 +57,13 @@ const nextConfig: NextConfig = {
       config.resolve.fallback = {
         ...config.resolve.fallback,
         fs: false,
+        net: false,
+        tls: false,
+        child_process: false,
       };
     }
     return config;
-  }
-};
+  },
+});
 
 export default nextConfig;
