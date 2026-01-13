@@ -1,15 +1,19 @@
 // This file is used to register the service worker
 // and handle updates to the PWA
 
-const isLocalhost = Boolean(
-  window.location.hostname === 'localhost' ||
-    // [::1] is the IPv6 localhost address.
-    window.location.hostname === '[::1]' ||
-    // 127.0.0.0/8 are considered localhost for IPv4.
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
-);
+// Helper function to check if we're on localhost (client-side only)
+function getIsLocalhost() {
+  if (typeof window === 'undefined') return false;
+  return Boolean(
+    window.location.hostname === 'localhost' ||
+      // [::1] is the IPv6 localhost address.
+      window.location.hostname === '[::1]' ||
+      // 127.0.0.0/8 are considered localhost for IPv4.
+      window.location.hostname.match(
+        /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+      )
+  );
+}
 
 type Config = {
   onSuccess?: (registration: ServiceWorkerRegistration) => void;
@@ -17,6 +21,9 @@ type Config = {
 };
 
 export function register(config?: Config) {
+  // Only run on client side
+  if (typeof window === 'undefined') return;
+  
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.NEXT_PUBLIC_BASE_PATH || '/', window.location.href);
@@ -30,7 +37,7 @@ export function register(config?: Config) {
     window.addEventListener('load', () => {
       const swUrl = '/sw.js';
 
-      if (isLocalhost) {
+      if (getIsLocalhost()) {
         // This is running on localhost. Let's check if a service worker still exists or not.
         checkValidServiceWorker(swUrl, config);
 
@@ -123,6 +130,9 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
 }
 
 export function unregister() {
+  // Only run on client side
+  if (typeof window === 'undefined') return;
+  
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready
       .then((registration) => {

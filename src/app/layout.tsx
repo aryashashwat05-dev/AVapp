@@ -4,7 +4,7 @@ import './globals.css';
 import { FirebaseClientProvider } from '@/firebase/client-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { GeometricBackground } from '@/components/ui/geometric-background';
-import PWAProvider from '@/components/pwa/PWAProvider';
+import PWAWrapper from '@/components/pwa/PWAWrapper';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const libreBaskerville = Libre_Baskerville({
@@ -18,8 +18,6 @@ export const metadata: Metadata = {
   title: 'AgoraVote: Real-time Voting Platform',
   description: 'A secure, scalable, and user-friendly real-time voting application.',
   manifest: '/manifest.json',
-  themeColor: '#000000',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
@@ -51,7 +49,7 @@ export default function RootLayout({
           <GeometricBackground />
           {children}
           <Toaster />
-          <PWAProvider />
+          <PWAWrapper />
         </FirebaseClientProvider>
       </body>
     </html>
