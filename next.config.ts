@@ -4,6 +4,21 @@ const nextConfig: NextConfig = {
   // Disable static generation for mobile app compatibility
   output: undefined,
   trailingSlash: false,
+  turbopack: {
+    root: '.',
+    resolveAlias: {
+        "canvas-confetti": "canvas-confetti"
+    },
+    resolveExtensions: [
+        ".mdx",
+        ".tsx",
+        ".ts",
+        ".jsx",
+        ".js",
+        ".mjs",
+        ".json"
+    ]
+  },
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -29,23 +44,6 @@ const nextConfig: NextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  turbopack: {
-    resolveAlias: {
-        "canvas-confetti": "canvas-confetti"
-    },
-    resolveExtensions: [
-        ".mdx",
-        ".tsx",
-        ".ts",
-        ".jsx",
-        ".js",
-        ".mjs",
-        ".json"
-    ]
   },
   webpack: (config: any, { isServer }: { isServer: boolean }) => {
     // Fix for canvas and other Node.js packages in browser
